@@ -25,6 +25,6 @@ public class ParkingLot {
 
     public Boolean addCar() {
         parkSpace--;
-        return parkSpace > 0;
+        return parkSpace >= 0;
     }
 }

@@ -129,7 +129,6 @@ public class ParkingLotTest {
             Car car = new Car();
             result = parkingLot.parkCar(car);
         }
-        System.out.println(result);
         //then
         assertNotNull(result);
     }
