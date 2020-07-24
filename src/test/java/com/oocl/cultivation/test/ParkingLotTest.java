@@ -86,6 +86,6 @@ public class ParkingLotTest {
         Car fetchedCar = parkingLot.fetchCar(wrongTicket);
 
         //then
-        assertEquals(null, car);
+        assertEquals(null, fetchedCar);
     }
 }
