@@ -16,4 +16,8 @@ public class ParkingLot {
         Car fetchedCar = carTicketCarMap.get(ticket);
         return fetchedCar;
     }
+
+    public Boolean validTicket(CarTicket expiredTicket) {
+        return expiredTicket.getEffectiveness();
+    }
 }
