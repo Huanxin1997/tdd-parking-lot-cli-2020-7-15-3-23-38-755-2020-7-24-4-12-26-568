@@ -101,4 +101,20 @@ public class ParkingLotTest {
         //then
         assertEquals(false, isCanfetchCar);
     }
+
+    @Test
+    void should_return_no_space_when_parking_is_full_given_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        CarTicket result = null;
+
+        //when
+        for(int i = 0;i < 12;i ++) {
+            Car car = new Car();
+            result = parkingLot.parkCar(car);
+        }
+
+        //then
+        assertEquals(null, result);
+    }
 }
