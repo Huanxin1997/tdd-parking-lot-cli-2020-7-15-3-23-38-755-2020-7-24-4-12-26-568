@@ -103,7 +103,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_no_space_when_parking_is_full_given_car() {
+    void should_return_false_when_parking_is_full_given_car() {
         //given
         ParkingLot parkingLot = new ParkingLot();
         CarTicket result = null;
@@ -116,5 +116,21 @@ public class ParkingLotTest {
 
         //then
         assertEquals(null, result);
+    }
+
+    @Test
+    void should_return_true_when_parking_is_not_full_given_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        CarTicket result = new CarTicket();
+
+        //when
+        for(int i = 0;i < 10;i ++) {
+            Car car = new Car();
+            result = parkingLot.parkCar(car);
+        }
+        System.out.println(result);
+        //then
+        assertNotNull(result);
     }
 }
