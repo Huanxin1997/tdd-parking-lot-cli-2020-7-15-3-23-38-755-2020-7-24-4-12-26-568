@@ -88,4 +88,17 @@ public class ParkingLotTest {
         //then
         assertEquals(null, fetchedCar);
     }
+
+    @Test
+    void should_return_false_when_fetch_car_given_Expired_ticket() {
+        //given
+        CarTicket expiredTicket = new CarTicket(false);
+        ParkingLot parkingLot = new ParkingLot();
+
+        //when
+        Boolean isCanfetchCar = parkingLot.validTicket(expiredTicket);
+
+        //then
+        assertEquals(false, isCanfetchCar);
+    }
 }
