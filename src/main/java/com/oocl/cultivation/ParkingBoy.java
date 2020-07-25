@@ -1,14 +1,12 @@
 package com.oocl.cultivation;
 
-import sun.security.krb5.internal.Ticket;
-
 public class ParkingBoy {
 
-    public Car fetchCar(Ticket ticket) {
-        return null;
-    }
-
     public String receiveTicketFromCustomer(CarTicket ticket) {
+        if (ticket == null) {
+            return "Please provide your parking ticket.";
+        }
+
         return "Unrecognized parking ticket.";
     }
 }
