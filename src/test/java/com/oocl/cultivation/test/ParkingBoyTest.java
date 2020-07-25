@@ -68,22 +68,8 @@ public class ParkingBoyTest {
         }
 
         // then
+        Assertions.assertNotNull(ticket);
         Assertions.assertEquals("0002", ticket.getParkingLotId());
     }
-
-//    @Test
-//    void should_return_0001_when_parking1_is_more_than_parking2_given_car() {
-//        // given
-//        ParkingLot parkingLot1 = new ParkingLot("0001");
-//        ParkingLot parkingLot2 = new ParkingLot("0002");
-//        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
-//
-//        // when
-//        CarTicket ticket = null;
-//
-//
-//        // then
-//        Assertions.assertEquals("0002", ticket.getParkingLotId());
-//    }
 
 }

@@ -1,24 +1,46 @@
 package com.oocl.cultivation;
 
+import java.util.List;
+
 public class ParkingBoy {
     private String message;
-    ParkingLot parkingLot = new ParkingLot();
+    private List<ParkingLot> parkingLots;
+
+    public ParkingBoy(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+    }
+
+    public ParkingBoy() {
+    }
 
     public void receiveTicketFromCustomer(CarTicket ticket) {
         if (ticket == null) {
             message = "Please provide your parking ticket.";
-        }
-        else {
+        } else {
             message = "Unrecognized parking ticket.";
         }
     }
 
     public int checkSpaceCount() {
-        int spaceCount = parkingLot.getParkSpace();
-        if(spaceCount < 1) {
+        int remainingParkingSpaces = 0;
+        for (ParkingLot parkingLot : this.parkingLots) {
+            remainingParkingSpaces += parkingLot.getParkSpace();
+        }
+        if (remainingParkingSpaces < 1) {
             message = "Not enough position.";
         }
-        return spaceCount;
+        return remainingParkingSpaces;
+    }
+
+    public CarTicket selectParkinglot(Car car) {
+        CarTicket ticket = null;
+        for (ParkingLot parkingLot : this.parkingLots) {
+            if (parkingLot.getParkSpace() > 0) {
+                ticket = parkingLot.parkCar(car);
+                break;
+            }
+        }
+        return ticket;
     }
 
     public String responseMessage() {
@@ -26,11 +48,10 @@ public class ParkingBoy {
     }
 
     public CarTicket parkCar(Car car) {
-        if(checkSpaceCount() < 0) {
+        if (checkSpaceCount() < 1) {
             return null;
         } else {
-            CarTicket ticket = parkingLot.parkCar(car);
-            return ticket;
+            return selectParkinglot(car);
         }
     }
 }
