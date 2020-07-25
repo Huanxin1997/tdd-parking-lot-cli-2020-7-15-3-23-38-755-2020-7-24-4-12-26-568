@@ -72,4 +72,23 @@ public class ParkingBoyTest {
         Assertions.assertEquals("0002", ticket.getParkingLotId());
     }
 
+    @Test
+    void should_return_0001_when_parking_1_more_than_parking_2_given_car() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot("1");
+        ParkingLot parkingLot2 = new ParkingLot("2");
+        parkingLot1.setParkSpace(5);
+        parkingLot2.setParkSpace(7);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
+
+        // when
+        String[] parkingPotSelectResults = new String[5];
+        for (int i = 0; i < 5; i++) {
+            parkingPotSelectResults[i] = parkingBoy.parkCar(new Car()).getParkingLotId();
+        }
+
+        // then
+        Assertions.assertEquals("22121", Arrays.toString(parkingPotSelectResults));
+    }
+
 }
