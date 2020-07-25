@@ -20,4 +20,16 @@ public class ParkingBoyTest {
         //then
         Assertions.assertEquals("Unrecognized parking ticket.", result);
     }
+
+    @Test
+    void should_return_please_provide_your_parking_ticket_when_fetch_car_given_no_ticket() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+
+        //when
+        String result = parkingBoy.receiveTicketFromCustomer(null);
+
+        //then
+        Assertions.assertEquals("Please provide your parking ticket.", result);
+    }
 }
