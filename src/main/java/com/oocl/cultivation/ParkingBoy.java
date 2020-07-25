@@ -42,6 +42,8 @@ public class ParkingBoy {
             ticket = selectParkinglotNormal(car);
         } else if (level == 2) {
             ticket = selectParkinglotSmart(car);
+        } else {
+            ticket = selectParkinglotSuperSmart(car);
         }
         return ticket;
     }
@@ -62,6 +64,7 @@ public class ParkingBoy {
         ParkingLot maxSpaceParkingLot = null;
         int maxSpace = 0;
         for (ParkingLot parkingLot : this.parkingLots) {
+            System.out.println(parkingLot.getParkSpace());
             if (parkingLot.getParkSpace() > maxSpace) {
                 maxSpace = parkingLot.getParkSpace();
                 maxSpaceParkingLot = parkingLot;
@@ -69,6 +72,19 @@ public class ParkingBoy {
         }
         ticket = maxSpaceParkingLot.parkCar(car);
         return ticket;
+    }
+
+    public CarTicket selectParkinglotSuperSmart(Car car) {
+        double largeAvailablePositionRate = 0.0;
+        ParkingLot parkingLotWithLargerAvailablePosition = null;
+        for (ParkingLot parkingLot : this.parkingLots) {
+            int remainingParkingSpaces = parkingLot.getParkSpace();
+            if (((double)remainingParkingSpaces / 10) > largeAvailablePositionRate) {
+                largeAvailablePositionRate = remainingParkingSpaces / 10;
+                parkingLotWithLargerAvailablePosition = parkingLot;
+            }
+        }
+        return parkingLotWithLargerAvailablePosition.parkCar(car);
     }
 
     public String responseMessage() {
@@ -85,13 +101,15 @@ public class ParkingBoy {
 
     public Car fetchCar(CarTicket ticket) {
         receiveTicketFromCustomer(ticket);
+        Car car = null;
         if (this.message == "") {
             for (ParkingLot parkingLot : parkingLots) {
                 if (parkingLot.fetchCar(ticket) != null) {
-                    return parkingLot.fetchCar(ticket);
+                    car = parkingLot.fetchCar(ticket);
+                    break;
                 }
             }
         }
-        return null;
+        return car;
     }
 }

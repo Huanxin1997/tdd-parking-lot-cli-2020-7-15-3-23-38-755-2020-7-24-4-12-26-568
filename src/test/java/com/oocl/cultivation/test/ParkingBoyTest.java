@@ -95,25 +95,6 @@ public class ParkingBoyTest {
     @Test
     void should_return_0001_when_parking_1_larger_available_position_than_parking_2_given_car() {
         // given
-        ParkingLot parkingLot1 = new ParkingLot("1");
-        ParkingLot parkingLot2 = new ParkingLot("2");
-        parkingLot1.setParkSpace(5);
-        parkingLot2.setParkSpace(7);
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
-
-        // when
-        String parkingPotSelectResults = "";
-        for (int i = 0; i < 5; i++) {
-            parkingPotSelectResults += parkingBoy.parkCar(new Car()).getParkingLotId();
-        }
-
-        // then
-        Assertions.assertEquals("22121", parkingPotSelectResults);
-    }
-
-    @Test
-    void should_get_parking_lot_1_when_park_given_7_cars_and_2_parking_lot_and_1_parking_boy() {
-        // given
         ParkingLot parkingLot1 = new ParkingLot("0001");
         ParkingLot parkingLot2 = new ParkingLot("0002");
         parkingLot1.setParkSpace(4);
