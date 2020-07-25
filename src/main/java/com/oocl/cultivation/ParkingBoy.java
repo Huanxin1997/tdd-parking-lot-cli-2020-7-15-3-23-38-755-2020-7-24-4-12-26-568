@@ -16,8 +16,10 @@ public class ParkingBoy {
     public void receiveTicketFromCustomer(CarTicket ticket) {
         if (ticket == null) {
             message = "Please provide your parking ticket.";
-        } else {
+        } else if (!ticket.getEffectiveness()) {
             message = "Unrecognized parking ticket.";
+        } else {
+            message = "";
         }
     }
 
@@ -53,5 +55,17 @@ public class ParkingBoy {
         } else {
             return selectParkinglot(car);
         }
+    }
+
+    public Car fetchCar(CarTicket ticket) {
+        receiveTicketFromCustomer(ticket);
+        if(this.message == "") {
+            for(ParkingLot parkingLot : parkingLots) {
+                if(parkingLot.fetchCar(ticket) != null) {
+                    return parkingLot.fetchCar(ticket);
+                }
+            }
+        }
+        return null;
     }
 }

@@ -18,7 +18,7 @@ public class ParkingBoyTest {
         CarTicket ticket = new CarTicket(false);
 
         //when
-        parkingBoy.receiveTicketFromCustomer(ticket);
+        parkingBoy.fetchCar(ticket);
         String result = parkingBoy.responseMessage();
 
         //then
@@ -31,7 +31,7 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy();
 
         //when
-        parkingBoy.receiveTicketFromCustomer(null);
+        parkingBoy.fetchCar(null);
         String result = parkingBoy.responseMessage();
 
                 //then
