@@ -8,8 +8,9 @@ public class ParkingBoy {
         if (ticket == null) {
             message = "Please provide your parking ticket.";
         }
-
-        message =  "Unrecognized parking ticket.";
+        else {
+            message = "Unrecognized parking ticket.";
+        }
     }
 
     public int checkSpaceCount() {
