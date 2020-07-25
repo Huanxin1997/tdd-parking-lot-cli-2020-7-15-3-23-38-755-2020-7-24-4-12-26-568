@@ -7,8 +7,16 @@ public class ParkingLot {
     private int parkSpace = 10;
     private Map<CarTicket, Car> carTicketCarMap = new HashMap<>();
 
+    public int getParkSpace() {
+        return parkSpace;
+    }
+
+    public void setParkSpace(int parkSpace) {
+        this.parkSpace = parkSpace;
+    }
+
     public CarTicket parkCar(Car car) {
-        if(!addCar()) return null;
+        if (!addCar()) return null;
         CarTicket ticket = new CarTicket();
         carTicketCarMap.put(ticket, car);
         return ticket;
