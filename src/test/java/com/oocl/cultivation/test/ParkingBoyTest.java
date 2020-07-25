@@ -110,4 +110,25 @@ public class ParkingBoyTest {
         // then
         Assertions.assertEquals("22121", parkingPotSelectResults);
     }
+
+    @Test
+    void should_get_parking_lot_1_when_park_given_7_cars_and_2_parking_lot_and_1_parking_boy() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot("0001");
+        ParkingLot parkingLot2 = new ParkingLot("0002");
+        parkingLot1.setParkSpace(4);
+        parkingLot2.setParkSpace(7);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 3);
+
+        // when
+        CarTicket ticket = null;
+        for (int i = 0; i < 11; i++) {
+            ticket = parkingBoy.parkCar(new Car());
+        }
+
+        // then
+        Assertions.assertNotNull(ticket);
+        Assertions.assertEquals("0001", ticket.getParkingLotId());
+    }
+
 }
