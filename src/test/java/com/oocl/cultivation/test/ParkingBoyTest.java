@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class ParkingBoyTest {
     @Test
@@ -42,7 +43,7 @@ public class ParkingBoyTest {
     void should_return_not_enough_position_when_park_space_is_full_given_car() {
         // given
         ParkingLot parkingLot = new ParkingLot("0001");
-        ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot));
+        ParkingBoy parkingBoy = new ParkingBoy(Collections.singletonList(parkingLot), 1);
 
         // when
         for (int i = 0; i < 15; i++) {
@@ -82,13 +83,31 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
 
         // when
-        String[] parkingPotSelectResults = new String[5];
+        String parkingPotSelectResults = "";
         for (int i = 0; i < 5; i++) {
-            parkingPotSelectResults[i] = parkingBoy.parkCar(new Car()).getParkingLotId();
+            parkingPotSelectResults += parkingBoy.parkCar(new Car()).getParkingLotId();
         }
 
         // then
-        Assertions.assertEquals("22121", Arrays.toString(parkingPotSelectResults));
+        Assertions.assertEquals("22121", parkingPotSelectResults);
     }
 
+    @Test
+    void should_return_0001_when_parking_1_larger_available_position_than_parking_2_given_car() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot("1");
+        ParkingLot parkingLot2 = new ParkingLot("2");
+        parkingLot1.setParkSpace(5);
+        parkingLot2.setParkSpace(7);
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
+
+        // when
+        String parkingPotSelectResults = "";
+        for (int i = 0; i < 5; i++) {
+            parkingPotSelectResults += parkingBoy.parkCar(new Car()).getParkingLotId();
+        }
+
+        // then
+        Assertions.assertEquals("22121", parkingPotSelectResults);
+    }
 }
