@@ -59,7 +59,7 @@ public class ParkingBoyTest {
         // given
         ParkingLot parkingLot1 = new ParkingLot("0001");
         ParkingLot parkingLot2 = new ParkingLot("0002");
-        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 1);
 
         // when
         CarTicket ticket = null;

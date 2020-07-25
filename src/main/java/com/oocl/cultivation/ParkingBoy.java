@@ -4,13 +4,15 @@ import java.util.List;
 
 public class ParkingBoy {
     private String message;
+    int level = 1;
     private List<ParkingLot> parkingLots;
 
-    public ParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+    public ParkingBoy() {
     }
 
-    public ParkingBoy() {
+    public ParkingBoy(List<ParkingLot> parkingLots, int level) {
+        this.parkingLots = parkingLots;
+        this.level = level;
     }
 
     public void receiveTicketFromCustomer(CarTicket ticket) {
@@ -36,12 +38,36 @@ public class ParkingBoy {
 
     public CarTicket selectParkinglot(Car car) {
         CarTicket ticket = null;
+        if (level == 1) {
+            ticket = selectParkinglotNormal(car);
+        } else if (level == 2) {
+            ticket = selectParkinglotSmart(car);
+        }
+        return ticket;
+    }
+
+    public CarTicket selectParkinglotNormal(Car car) {
+        CarTicket ticket = null;
         for (ParkingLot parkingLot : this.parkingLots) {
             if (parkingLot.getParkSpace() > 0) {
                 ticket = parkingLot.parkCar(car);
                 break;
             }
         }
+        return ticket;
+    }
+
+    public CarTicket selectParkinglotSmart(Car car) {
+        CarTicket ticket = null;
+        ParkingLot maxSpaceParkingLot = null;
+        int maxSpace = 0;
+        for (ParkingLot parkingLot : this.parkingLots) {
+            if (parkingLot.getParkSpace() > maxSpace) {
+                maxSpace = parkingLot.getParkSpace();
+                maxSpaceParkingLot = parkingLot;
+            }
+        }
+        ticket = maxSpaceParkingLot.parkCar(car);
         return ticket;
     }
 
@@ -59,9 +85,9 @@ public class ParkingBoy {
 
     public Car fetchCar(CarTicket ticket) {
         receiveTicketFromCustomer(ticket);
-        if(this.message == "") {
-            for(ParkingLot parkingLot : parkingLots) {
-                if(parkingLot.fetchCar(ticket) != null) {
+        if (this.message == "") {
+            for (ParkingLot parkingLot : parkingLots) {
+                if (parkingLot.fetchCar(ticket) != null) {
                     return parkingLot.fetchCar(ticket);
                 }
             }
