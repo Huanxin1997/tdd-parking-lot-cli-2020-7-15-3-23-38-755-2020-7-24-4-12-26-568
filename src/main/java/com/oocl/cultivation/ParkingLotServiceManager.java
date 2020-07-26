@@ -1,12 +1,25 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLotServiceManager {
     private List<ParkingBoy> parkingBoys;
+    private List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();;
 
     public ParkingLotServiceManager(List<ParkingBoy> parkingBoys) {
         this.parkingBoys = parkingBoys;
+    }
+
+    public ParkingLotServiceManager() {
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 
     public Boolean addParkingBoy(ParkingBoy parkingBoy) {
@@ -21,5 +34,9 @@ public class ParkingLotServiceManager {
             }
         }
         return null;
+    }
+
+    public void addParkingLot(ParkingLot parkingLot) {
+        parkingLots.add(parkingLot);
     }
 }
