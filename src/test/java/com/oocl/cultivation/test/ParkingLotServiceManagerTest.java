@@ -59,4 +59,21 @@ public class ParkingLotServiceManagerTest {
         // then
         Assertions.assertNotNull(ticket);
     }
+
+    @Test
+    void should_return_2_when_specify_parking_lot_given_2_parking_lots() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot("0001");
+        ParkingLot parkingLot2 = new ParkingLot("0002");
+        ParkingLotServiceManager manager = new ParkingLotServiceManager();
+
+        // when
+//        manager.setParkingLots(Arrays.asList(parkingLot1, parkingLot2));
+        manager.addParkingLot(parkingLot1);
+        manager.addParkingLot(parkingLot2);
+        int parkingLotCount = manager.getParkingLots().size();
+
+        // then
+        Assertions.assertEquals(2, parkingLotCount);
+    }
 }
