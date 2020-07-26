@@ -106,4 +106,24 @@ public class ParkingLotServiceManagerTest {
         // then
         Assertions.assertEquals(car, fetchedCar);
     }
+
+    @Test
+    void should_return_0002_when_parking_1_is_full_given_car() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot("0001");
+        ParkingLot parkingLot2 = new ParkingLot("0002");
+        ParkingLotServiceManager manager = new ParkingLotServiceManager();
+        manager.addParkingLot(parkingLot1);
+        manager.addParkingLot(parkingLot2);
+
+        // when
+        CarTicket ticket = null;
+        for (int i = 0; i < 11; i++) {
+            ticket = manager.parkCar(new Car());
+        }
+
+        // then
+        Assertions.assertNotNull(ticket);
+        Assertions.assertEquals("0002", ticket.getParkingLotId());
+    }
 }
