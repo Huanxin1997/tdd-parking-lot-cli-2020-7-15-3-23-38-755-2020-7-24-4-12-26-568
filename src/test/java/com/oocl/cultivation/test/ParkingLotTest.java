@@ -113,7 +113,7 @@ public class ParkingLotTest {
         Boolean isCanfetchCar = parkingLot.validTicket(expiredTicket);
 
         //then
-        assertEquals(false, isCanfetchCar);
+        assertFalse(isCanfetchCar);
     }
 
     @Test

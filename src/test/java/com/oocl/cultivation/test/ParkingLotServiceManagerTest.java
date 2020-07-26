@@ -20,7 +20,7 @@ public class ParkingLotServiceManagerTest {
         // when
         Boolean result = manager.addParkingBoy(parkingBoy);
         // then
-        Assertions.assertEquals(true, result);
+        Assertions.assertTrue(result);
     }
 
     @Test
