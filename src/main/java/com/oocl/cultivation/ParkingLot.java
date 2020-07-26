@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class ParkingLot {
     private int parkSpace = 10;
+    private int capacity = 10;
     private String parkingLotId = "";
     private Map<CarTicket, Car> carTicketCarMap = new HashMap<>();
 
@@ -23,12 +24,13 @@ public class ParkingLot {
         this.parkSpace = parkSpace;
     }
 
-    public String getParkingLotId() {
-        return parkingLotId;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setParkingLotId(String parkingLotId) {
-        this.parkingLotId = parkingLotId;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+        this.parkSpace = capacity;
     }
 
     public CarTicket parkCar(Car car) {
@@ -40,7 +42,7 @@ public class ParkingLot {
 
     public Car fetchCar(CarTicket ticket) {
         Car fetchedCar = carTicketCarMap.get(ticket);
-        if(fetchedCar != null) {
+        if (fetchedCar != null) {
             removeCar(ticket);
         }
         return fetchedCar;
@@ -51,12 +53,15 @@ public class ParkingLot {
     }
 
     public Boolean addCar() {
+        if(parkSpace == 0) {
+            return false;
+        }
         parkSpace--;
-        return parkSpace >= 0;
+        return true;
     }
 
     public void removeCar(CarTicket ticket) {
-        Car fetchedCar = carTicketCarMap.remove(ticket);
-        parkSpace ++;
+        carTicketCarMap.remove(ticket);
+        parkSpace++;
     }
 }
