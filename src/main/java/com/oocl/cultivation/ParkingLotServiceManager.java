@@ -24,6 +24,9 @@ public class ParkingLotServiceManager {
 
     public Boolean addParkingBoy(ParkingBoy parkingBoy) {
         parkingBoys.add(parkingBoy);
+        for(ParkingLot parkingLot : parkingBoy.getParkingLots()) {
+            parkingLots.add(parkingLot);
+        }
         return parkingBoys.get(parkingBoys.size() - 1) == parkingBoy;
     }
 

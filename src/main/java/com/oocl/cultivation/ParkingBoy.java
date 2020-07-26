@@ -1,11 +1,12 @@
 package com.oocl.cultivation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
     private String message;
     int level = 1;
-    private List<ParkingLot> parkingLots;
+    private List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
 
     public ParkingBoy() {
     }
@@ -13,6 +14,14 @@ public class ParkingBoy {
     public ParkingBoy(List<ParkingLot> parkingLots, int level) {
         this.parkingLots = parkingLots;
         this.level = level;
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 
     public void receiveTicketFromCustomer(CarTicket ticket) {
