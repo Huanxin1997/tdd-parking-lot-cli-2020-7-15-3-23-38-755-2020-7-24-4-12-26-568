@@ -80,12 +80,30 @@ public class ParkingLotServiceManagerTest {
     @Test
     void should_return_ticket_when_park_given_car() {
         // given
+        ParkingLot parkingLot = new ParkingLot();
         ParkingLotServiceManager manager = new ParkingLotServiceManager();
 
         // when
+        manager.addParkingLot(parkingLot);
         CarTicket ticket = manager.parkCar(new Car());
 
         // then
         Assertions.assertNotNull(ticket);
+    }
+
+    @Test
+    void should_return_car_when_fetch_car_given_ticket() {
+        // given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingLotServiceManager manager = new ParkingLotServiceManager();
+        manager.addParkingLot(parkingLot);
+
+        // when
+        CarTicket ticket = manager.parkCar(car);
+        Car fetchedCar = manager.fetchCar(ticket);
+
+        // then
+        Assertions.assertEquals(car, fetchedCar);
     }
 }
