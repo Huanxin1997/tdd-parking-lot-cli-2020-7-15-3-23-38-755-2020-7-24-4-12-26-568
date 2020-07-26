@@ -64,6 +64,7 @@ public class ParkingBoy {
         ParkingLot maxSpaceParkingLot = null;
         int maxSpace = 0;
         for (ParkingLot parkingLot : this.parkingLots) {
+            System.out.println(parkingLot.getParkSpace());
             if (parkingLot.getParkSpace() > maxSpace) {
                 maxSpace = parkingLot.getParkSpace();
                 maxSpaceParkingLot = parkingLot;
@@ -78,8 +79,8 @@ public class ParkingBoy {
         ParkingLot parkingLotWithLargerAvailablePosition = null;
         for (ParkingLot parkingLot : this.parkingLots) {
             int remainingParkingSpaces = parkingLot.getParkSpace();
-            if (((double)remainingParkingSpaces / parkingLot.getCapacity()) > largeAvailablePositionRate) {
-                largeAvailablePositionRate = remainingParkingSpaces / parkingLot.getCapacity();
+            if (((double)remainingParkingSpaces / 10) > largeAvailablePositionRate) {
+                largeAvailablePositionRate = remainingParkingSpaces / 10;
                 parkingLotWithLargerAvailablePosition = parkingLot;
             }
         }
