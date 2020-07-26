@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ParkingLotServiceManager {
     private List<ParkingBoy> parkingBoys;
-    private List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();;
+    private List<ParkingLot> parkingLots = new ArrayList<>();;
 
     public ParkingLotServiceManager(List<ParkingBoy> parkingBoys) {
         this.parkingBoys = parkingBoys;
@@ -18,15 +18,9 @@ public class ParkingLotServiceManager {
         return parkingLots;
     }
 
-    public void setParkingLots(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
-    }
-
     public Boolean addParkingBoy(ParkingBoy parkingBoy) {
         parkingBoys.add(parkingBoy);
-        for(ParkingLot parkingLot : parkingBoy.getParkingLots()) {
-            parkingLots.add(parkingLot);
-        }
+        parkingLots.addAll(parkingBoy.getParkingLots());
         return parkingBoys.get(parkingBoys.size() - 1) == parkingBoy;
     }
 
@@ -41,5 +35,10 @@ public class ParkingLotServiceManager {
 
     public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
+    }
+
+    public CarTicket parkCar(Car car) {
+        ParkingLot parkingLot = new ParkingLot();
+        return parkingLot.parkCar(car);
     }
 }
