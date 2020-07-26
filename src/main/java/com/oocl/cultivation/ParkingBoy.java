@@ -1,5 +1,7 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.parkStratege.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,52 +50,58 @@ public class ParkingBoy {
     public CarTicket selectParkinglot(Car car) {
         CarTicket ticket = null;
         if (level == 1) {
-            ticket = selectParkinglotNormal(car);
+            ParkingStratege parkingStratege = new NormalParkingStratege();
+            Parking parking = new Parking(parkingStratege, parkingLots);
+            ticket = parking.parkCar(car);
         } else if (level == 2) {
-            ticket = selectParkinglotSmart(car);
+            ParkingStratege parkingStratege = new SmartParkingStratege();
+            Parking parking = new Parking(parkingStratege, parkingLots);
+            ticket = parking.parkCar(car);
         } else {
-            ticket = selectParkinglotSuperSmart(car);
+            ParkingStratege parkingStratege = new SuperSmartParkingStratege();
+            Parking parking = new Parking(parkingStratege, parkingLots);
+            ticket = parking.parkCar(car);
         }
         return ticket;
     }
 
-    public CarTicket selectParkinglotNormal(Car car) {
-        CarTicket ticket = null;
-        for (ParkingLot parkingLot : this.parkingLots) {
-            if (parkingLot.getParkSpace() > 0) {
-                ticket = parkingLot.parkCar(car);
-                break;
-            }
-        }
-        return ticket;
-    }
-
-    public CarTicket selectParkinglotSmart(Car car) {
-        CarTicket ticket = null;
-        ParkingLot maxSpaceParkingLot = null;
-        int maxSpace = 0;
-        for (ParkingLot parkingLot : this.parkingLots) {
-            if (parkingLot.getParkSpace() > maxSpace) {
-                maxSpace = parkingLot.getParkSpace();
-                maxSpaceParkingLot = parkingLot;
-            }
-        }
-        ticket = maxSpaceParkingLot.parkCar(car);
-        return ticket;
-    }
-
-    public CarTicket selectParkinglotSuperSmart(Car car) {
-        double largeAvailablePositionRate = 0.0;
-        ParkingLot parkingLotWithLargerAvailablePosition = null;
-        for (ParkingLot parkingLot : this.parkingLots) {
-            int remainingParkingSpaces = parkingLot.getParkSpace();
-            if (((double)remainingParkingSpaces / parkingLot.getCapacity()) > largeAvailablePositionRate) {
-                largeAvailablePositionRate = remainingParkingSpaces / parkingLot.getCapacity();
-                parkingLotWithLargerAvailablePosition = parkingLot;
-            }
-        }
-        return parkingLotWithLargerAvailablePosition.parkCar(car);
-    }
+//    public CarTicket selectParkinglotNormal(Car car) {
+//        CarTicket ticket = null;
+//        for (ParkingLot parkingLot : this.parkingLots) {
+//            if (parkingLot.getParkSpace() > 0) {
+//                ticket = parkingLot.parkCar(car);
+//                break;
+//            }
+//        }
+//        return ticket;
+//    }
+//
+//    public CarTicket selectParkinglotSmart(Car car) {
+//        CarTicket ticket = null;
+//        ParkingLot maxSpaceParkingLot = null;
+//        int maxSpace = 0;
+//        for (ParkingLot parkingLot : this.parkingLots) {
+//            if (parkingLot.getParkSpace() > maxSpace) {
+//                maxSpace = parkingLot.getParkSpace();
+//                maxSpaceParkingLot = parkingLot;
+//            }
+//        }
+//        ticket = maxSpaceParkingLot.parkCar(car);
+//        return ticket;
+//    }
+//
+//    public CarTicket selectParkinglotSuperSmart(Car car) {
+//        double largeAvailablePositionRate = 0.0;
+//        ParkingLot parkingLotWithLargerAvailablePosition = null;
+//        for (ParkingLot parkingLot : this.parkingLots) {
+//            int remainingParkingSpaces = parkingLot.getParkSpace();
+//            if (((double)remainingParkingSpaces / parkingLot.getCapacity()) > largeAvailablePositionRate) {
+//                largeAvailablePositionRate = remainingParkingSpaces / parkingLot.getCapacity();
+//                parkingLotWithLargerAvailablePosition = parkingLot;
+//            }
+//        }
+//        return parkingLotWithLargerAvailablePosition.parkCar(car);
+//    }
 
     public String responseMessage() {
         return message;

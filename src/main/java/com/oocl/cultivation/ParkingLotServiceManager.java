@@ -1,5 +1,9 @@
 package com.oocl.cultivation;
 
+import com.oocl.cultivation.parkStratege.NormalParkingStratege;
+import com.oocl.cultivation.parkStratege.Parking;
+import com.oocl.cultivation.parkStratege.ParkingStratege;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +42,9 @@ public class ParkingLotServiceManager {
     }
 
     public CarTicket parkCar(Car car) {
-        for(ParkingLot parkingLot : parkingLots) {
-            if(parkingLot.getParkSpace() > 0) {
-                return parkingLot.parkCar(car);
-            }
-        }
-        return null;
+        ParkingStratege parkingStratege = new NormalParkingStratege();
+        Parking parking = new Parking(parkingStratege, parkingLots);
+        return parking.parkCar(car);
     }
 
     public Car fetchCar(CarTicket ticket) {

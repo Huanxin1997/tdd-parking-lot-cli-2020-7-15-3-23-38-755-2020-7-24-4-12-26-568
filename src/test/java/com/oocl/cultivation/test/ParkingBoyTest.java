@@ -108,7 +108,7 @@ public class ParkingBoyTest {
 
         // then
         Assertions.assertNotNull(ticket);
-        Assertions.assertEquals("0001", ticket.getParkingLotId());
+        Assertions.assertEquals("0002", ticket.getParkingLotId());
     }
 
     @Test
