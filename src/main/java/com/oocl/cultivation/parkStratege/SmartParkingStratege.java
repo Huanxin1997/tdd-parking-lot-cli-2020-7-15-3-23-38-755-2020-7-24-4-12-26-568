@@ -9,7 +9,7 @@ import java.util.List;
 public class SmartParkingStratege implements ParkingStratege{
     @Override
     public CarTicket park(Car car, List<ParkingLot> parkingLots) {
-        CarTicket ticket = null;
+        CarTicket ticket;
         ParkingLot maxSpaceParkingLot = null;
         int maxSpace = 0;
         for (ParkingLot parkingLot : parkingLots) {
@@ -18,6 +18,7 @@ public class SmartParkingStratege implements ParkingStratege{
                 maxSpaceParkingLot = parkingLot;
             }
         }
+        assert maxSpaceParkingLot != null;
         ticket = maxSpaceParkingLot.parkCar(car);
         return ticket;
     }

@@ -8,7 +8,7 @@ import java.util.List;
 public class ParkingBoy {
     private String message;
     int level = 1;
-    private List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+    private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy() {
     }
@@ -20,10 +20,6 @@ public class ParkingBoy {
 
     public List<ParkingLot> getParkingLots() {
         return parkingLots;
-    }
-
-    public void setParkingLots(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
     }
 
     public void receiveTicketFromCustomer(CarTicket ticket) {
@@ -48,7 +44,7 @@ public class ParkingBoy {
     }
 
     public CarTicket selectParkinglot(Car car) {
-        CarTicket ticket = null;
+        CarTicket ticket;
         if (level == 1) {
             ParkingStratege parkingStratege = new NormalParkingStratege();
             Parking parking = new Parking(parkingStratege, parkingLots);
@@ -118,7 +114,7 @@ public class ParkingBoy {
     public Car fetchCar(CarTicket ticket) {
         receiveTicketFromCustomer(ticket);
         Car car = null;
-        if (this.message == "") {
+        if (this.message.equals("")) {
             for (ParkingLot parkingLot : parkingLots) {
                 if (parkingLot.fetchCar(ticket) != null) {
                     car = parkingLot.fetchCar(ticket);

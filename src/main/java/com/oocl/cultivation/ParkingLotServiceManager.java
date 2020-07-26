@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ParkingLotServiceManager {
     private List<ParkingBoy> parkingBoys;
-    private List<ParkingLot> parkingLots = new ArrayList<>();;
+    private final List<ParkingLot> parkingLots = new ArrayList<>();;
 
     public ParkingLotServiceManager(List<ParkingBoy> parkingBoys) {
         this.parkingBoys = parkingBoys;

@@ -19,10 +19,6 @@ public class CarTicket {
         return effectiveness;
     }
 
-    public void setEffectiveness(Boolean effectiveness) {
-        this.effectiveness = effectiveness;
-    }
-
     public String getParkingLotId() {
         return this.parkingLotId;
     }

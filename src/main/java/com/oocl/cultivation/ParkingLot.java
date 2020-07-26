@@ -7,7 +7,7 @@ public class ParkingLot {
     private int parkSpace = 10;
     private int capacity = 10;
     private String parkingLotId = "";
-    private Map<CarTicket, Car> carTicketCarMap = new HashMap<>();
+    private final Map<CarTicket, Car> carTicketCarMap = new HashMap<>();
 
     public ParkingLot(String parkingPotId) {
         this.parkingLotId = parkingPotId;
