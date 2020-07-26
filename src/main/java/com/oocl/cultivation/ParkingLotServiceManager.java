@@ -13,4 +13,13 @@ public class ParkingLotServiceManager {
         parkingBoys.add(parkingBoy);
         return parkingBoys.get(parkingBoys.size() - 1) == parkingBoy;
     }
+
+    public ParkingBoy specifyBoy(ParkingBoy expectedParkingBoy) {
+        for(ParkingBoy parkingBoy : parkingBoys) {
+            if(parkingBoy == expectedParkingBoy) {
+                return expectedParkingBoy;
+            }
+        }
+        return null;
+    }
 }
