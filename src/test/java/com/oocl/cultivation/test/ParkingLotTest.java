@@ -5,8 +5,7 @@ import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingLot;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
 
@@ -81,12 +80,12 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
 
         //when
-        CarTicket ticket = parkingLot.parkCar(car);
+        parkingLot.parkCar(car);
         CarTicket wrongTicket = new CarTicket();
         Car fetchedCar = parkingLot.fetchCar(wrongTicket);
 
         //then
-        assertEquals(null, fetchedCar);
+        assertNull(fetchedCar);
     }
 
     @Test
@@ -96,12 +95,12 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
 
         //when
-        CarTicket ticket = parkingLot.parkCar(car);
+        parkingLot.parkCar(car);
         CarTicket wrongTicket = new CarTicket();
         Car fetchedCar = parkingLot.fetchCar(wrongTicket);
 
         //then
-        assertEquals(null, fetchedCar);
+        assertNull(fetchedCar);
     }
 
     @Test
@@ -124,13 +123,13 @@ public class ParkingLotTest {
         CarTicket result = null;
 
         //when
-        for(int i = 0;i < 12;i ++) {
+        for(int i = 0;i < 19;i ++) {
             Car car = new Car();
             result = parkingLot.parkCar(car);
         }
 
         //then
-        assertEquals(null, result);
+        assertNull(result);
     }
 
     @Test
