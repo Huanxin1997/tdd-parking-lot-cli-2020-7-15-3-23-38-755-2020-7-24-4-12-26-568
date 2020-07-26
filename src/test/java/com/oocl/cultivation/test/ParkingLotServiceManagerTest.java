@@ -76,4 +76,16 @@ public class ParkingLotServiceManagerTest {
         // then
         Assertions.assertEquals(2, parkingLotCount);
     }
+
+    @Test
+    void should_return_ticket_when_park_given_car() {
+        // given
+        ParkingLotServiceManager manager = new ParkingLotServiceManager();
+
+        // when
+        CarTicket ticket = manager.parkCar(new Car());
+
+        // then
+        Assertions.assertNotNull(ticket);
+    }
 }
