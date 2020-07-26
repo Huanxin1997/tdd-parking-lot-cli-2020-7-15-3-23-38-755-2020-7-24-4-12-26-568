@@ -1,8 +1,8 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.ParkingBoy;
-import com.oocl.cultivation.ParkingLotServiceManager;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AssertionsKt;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -39,5 +39,24 @@ public class ParkingLotServiceManagerTest {
         // then
         Assertions.assertNotNull(specifiedParkingBoy);
         Assertions.assertEquals(parkingBoy2, specifiedParkingBoy);
+    }
+
+    @Test
+    void should_return_true_when_specify_boy_parking_car_given_parking_boy_2() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot("0001");
+        ParkingLot parkingLot2 = new ParkingLot("0002");
+        ParkingBoy parkingBoy1 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 1);
+        ParkingBoy parkingBoy2 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
+        ParkingBoy parkingBoy3 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 3);
+        List<ParkingBoy> parkingBoys = new ArrayList<>(Arrays.asList(parkingBoy1, parkingBoy2, parkingBoy3));
+        ParkingLotServiceManager manager = new ParkingLotServiceManager(parkingBoys);
+
+        // when
+        ParkingBoy specifiedParkingBoy = manager.specifyBoy(parkingBoy2);
+        CarTicket ticket = specifiedParkingBoy.parkCar(new Car());
+
+        // then
+        Assertions.assertNotNull(ticket);
     }
 }
