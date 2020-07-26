@@ -38,7 +38,21 @@ public class ParkingLotServiceManager {
     }
 
     public CarTicket parkCar(Car car) {
-        ParkingLot parkingLot = new ParkingLot();
-        return parkingLot.parkCar(car);
+        for(ParkingLot parkingLot : parkingLots) {
+            if(parkingLot.getParkSpace() > 0) {
+                return parkingLot.parkCar(car);
+            }
+        }
+        return null;
+    }
+
+    public Car fetchCar(CarTicket ticket) {
+        for(ParkingLot parkingLot : parkingLots) {
+            Car car = parkingLot.fetchCar(ticket);
+            if(car != null) {
+                return car;
+            }
+        }
+        return null;
     }
 }
