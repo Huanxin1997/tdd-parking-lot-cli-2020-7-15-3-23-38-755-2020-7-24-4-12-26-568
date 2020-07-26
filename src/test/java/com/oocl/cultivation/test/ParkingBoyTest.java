@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class ParkingBoyTest {
     @Test
@@ -83,13 +82,13 @@ public class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
 
         // when
-        String parkingPotSelectResults = "";
+        StringBuilder parkingPotSelectResults = new StringBuilder();
         for (int i = 0; i < 5; i++) {
-            parkingPotSelectResults += parkingBoy.parkCar(new Car()).getParkingLotId();
+            parkingPotSelectResults.append(parkingBoy.parkCar(new Car()).getParkingLotId());
         }
 
         // then
-        Assertions.assertEquals("22121", parkingPotSelectResults);
+        Assertions.assertEquals("22121", parkingPotSelectResults.toString());
     }
 
     @Test
