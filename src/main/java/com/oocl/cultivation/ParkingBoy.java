@@ -22,14 +22,12 @@ public class ParkingBoy {
         return parkingLots;
     }
 
-    public void receiveTicketFromCustomer(CarTicket ticket) {
+    public Boolean validCarTicket(CarTicket ticket) {
         if (ticket == null) {
             message = "Please provide your parking ticket.";
-        } else if (!ticket.getEffectiveness()) {
-            message = "Unrecognized parking ticket.";
-        } else {
-            message = "";
+            return false;
         }
+        return true;
     }
 
     public int checkSpaceCount() {
