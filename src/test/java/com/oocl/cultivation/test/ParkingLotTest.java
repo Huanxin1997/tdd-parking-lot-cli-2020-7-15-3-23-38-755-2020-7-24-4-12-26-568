@@ -76,16 +76,17 @@ public class ParkingLotTest {
     @Test
     void should_return_false_when_fetch_car_given_wrong_ticket() {
         //given
-        Car car = new Car();
+        Car car1 = new Car();
+        Car car2 = new Car();
         ParkingLot parkingLot = new ParkingLot();
+        CarTicket ticket1 = parkingLot.parkCar(car1);
+        parkingLot.parkCar(car2);
 
         //when
-        parkingLot.parkCar(car);
-        CarTicket wrongTicket = new CarTicket();
-        Car fetchedCar = parkingLot.fetchCar(wrongTicket);
+        Car fetchedCar = parkingLot.fetchCar(ticket1);
 
         //then
-        assertNull(fetchedCar);
+        assertFalse(car2 == fetchedCar);
     }
 
     @Test
