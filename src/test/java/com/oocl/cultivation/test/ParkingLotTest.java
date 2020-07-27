@@ -104,16 +104,16 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_false_when_fetch_car_given_expired_ticket() {
+    void should_return_null_when_fetch_car_given_expired_ticket() {
         //given
-        CarTicket expiredTicket = new CarTicket(false);
+        CarTicket expiredTicket = new CarTicket();
         ParkingLot parkingLot = new ParkingLot();
 
         //when
-        Boolean isCanfetchCar = parkingLot.validTicket(expiredTicket);
+        Car car = parkingLot.fetchCar(expiredTicket);
 
         //then
-        assertFalse(isCanfetchCar);
+        assertNull(car);
     }
 
     @Test
