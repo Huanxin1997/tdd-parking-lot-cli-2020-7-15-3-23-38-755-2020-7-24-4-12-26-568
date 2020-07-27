@@ -7,15 +7,13 @@ import java.util.List;
 
 public class ParkingBoy {
     private String message;
-    int level = 1;
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy() {
     }
 
-    public ParkingBoy(List<ParkingLot> parkingLots, int level) {
+    public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
-        this.level = level;
     }
 
     public List<ParkingLot> getParkingLots() {
