@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
-    private String message;
+    private String message = "";
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy() {
@@ -28,7 +28,7 @@ public class ParkingBoy {
         return true;
     }
 
-    public int checkSpaceCount() {
+    public int getSpaceCount() {
         int remainingParkingSpaces = 0;
         for (ParkingLot parkingLot : this.parkingLots) {
             remainingParkingSpaces += parkingLot.getParkSpace();
