@@ -45,66 +45,18 @@ public class ParkingBoy {
 
     public CarTicket selectParkinglot(Car car) {
         CarTicket ticket;
-        if (level == 1) {
-            ParkingStratege parkingStratege = new NormalParkingStratege();
-            Parking parking = new Parking(parkingStratege, parkingLots);
-            ticket = parking.parkCar(car);
-        } else if (level == 2) {
-            ParkingStratege parkingStratege = new SmartParkingStratege();
-            Parking parking = new Parking(parkingStratege, parkingLots);
-            ticket = parking.parkCar(car);
-        } else {
-            ParkingStratege parkingStratege = new SuperSmartParkingStratege();
-            Parking parking = new Parking(parkingStratege, parkingLots);
-            ticket = parking.parkCar(car);
-        }
+        ParkingStratege parkingStratege = new NormalParkingStratege();
+        Parking parking = new Parking(parkingStratege, parkingLots);
+        ticket = parking.parkCar(car);
         return ticket;
     }
-
-//    public CarTicket selectParkinglotNormal(Car car) {
-//        CarTicket ticket = null;
-//        for (ParkingLot parkingLot : this.parkingLots) {
-//            if (parkingLot.getParkSpace() > 0) {
-//                ticket = parkingLot.parkCar(car);
-//                break;
-//            }
-//        }
-//        return ticket;
-//    }
-//
-//    public CarTicket selectParkinglotSmart(Car car) {
-//        CarTicket ticket = null;
-//        ParkingLot maxSpaceParkingLot = null;
-//        int maxSpace = 0;
-//        for (ParkingLot parkingLot : this.parkingLots) {
-//            if (parkingLot.getParkSpace() > maxSpace) {
-//                maxSpace = parkingLot.getParkSpace();
-//                maxSpaceParkingLot = parkingLot;
-//            }
-//        }
-//        ticket = maxSpaceParkingLot.parkCar(car);
-//        return ticket;
-//    }
-//
-//    public CarTicket selectParkinglotSuperSmart(Car car) {
-//        double largeAvailablePositionRate = 0.0;
-//        ParkingLot parkingLotWithLargerAvailablePosition = null;
-//        for (ParkingLot parkingLot : this.parkingLots) {
-//            int remainingParkingSpaces = parkingLot.getParkSpace();
-//            if (((double)remainingParkingSpaces / parkingLot.getCapacity()) > largeAvailablePositionRate) {
-//                largeAvailablePositionRate = remainingParkingSpaces / parkingLot.getCapacity();
-//                parkingLotWithLargerAvailablePosition = parkingLot;
-//            }
-//        }
-//        return parkingLotWithLargerAvailablePosition.parkCar(car);
-//    }
 
     public String responseMessage() {
         return message;
     }
 
     public CarTicket parkCar(Car car) {
-        if (checkSpaceCount() < 1) {
+        if (getSpaceCount() < 1) {
             return null;
         } else {
             return selectParkinglot(car);

@@ -4,10 +4,11 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.CarTicket;
 import com.oocl.cultivation.ParkingLot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Parking {
-    private final List<ParkingLot> parkingLots;
+    private List<ParkingLot> parkingLots;
     private final ParkingStratege parkingStratege;
 
     public Parking(ParkingStratege parkingStratege, List<ParkingLot> parkingLots) {
@@ -15,8 +16,12 @@ public class Parking {
         this.parkingLots = parkingLots;
     }
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     public CarTicket parkCar(Car car) {
-        return this.parkingStratege.park(car, parkingLots);
+        return this.parkingStratege.parkCar(car, this.parkingLots);
     }
 
 }

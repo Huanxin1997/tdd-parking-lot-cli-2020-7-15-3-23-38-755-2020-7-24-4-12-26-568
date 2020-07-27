@@ -8,9 +8,15 @@ import java.util.List;
 
 public class SuperSmartParkingStratege implements ParkingStratege {
     @Override
-    public CarTicket park(Car car, List<ParkingLot> parkingLots) {
+    public CarTicket parkCar(Car car, List<ParkingLot> parkingLots) {
         double largeAvailablePositionRate = 0.0;
         ParkingLot parkingLotWithLargerAvailablePosition = null;
+        parkingLotWithLargerAvailablePosition = getParkingLot(parkingLots, largeAvailablePositionRate, parkingLotWithLargerAvailablePosition);
+        assert parkingLotWithLargerAvailablePosition != null;
+        return parkingLotWithLargerAvailablePosition.parkCar(car);
+    }
+
+    private ParkingLot getParkingLot(List<ParkingLot> parkingLots, double largeAvailablePositionRate, ParkingLot parkingLotWithLargerAvailablePosition) {
         for (ParkingLot parkingLot : parkingLots) {
             int remainingParkingSpaces = parkingLot.getParkSpace();
             if (((double)remainingParkingSpaces / parkingLot.getCapacity()) > largeAvailablePositionRate) {
@@ -18,7 +24,6 @@ public class SuperSmartParkingStratege implements ParkingStratege {
                 parkingLotWithLargerAvailablePosition = parkingLot;
             }
         }
-        assert parkingLotWithLargerAvailablePosition != null;
-        return parkingLotWithLargerAvailablePosition.parkCar(car);
+        return parkingLotWithLargerAvailablePosition;
     }
 }

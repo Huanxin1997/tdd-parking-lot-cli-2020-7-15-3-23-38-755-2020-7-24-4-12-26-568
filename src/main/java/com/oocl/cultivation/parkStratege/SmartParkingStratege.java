@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SmartParkingStratege implements ParkingStratege{
     @Override
-    public CarTicket park(Car car, List<ParkingLot> parkingLots) {
+    public CarTicket parkCar(Car car, List<ParkingLot> parkingLots) {
         CarTicket ticket;
         ParkingLot maxSpaceParkingLot = null;
         int maxSpace = 0;

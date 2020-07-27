@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NormalParkingStratege implements ParkingStratege{
     @Override
-    public CarTicket park(Car car, List<ParkingLot> parkingLots) {
+    public CarTicket parkCar(Car car, List<ParkingLot> parkingLots) {
         CarTicket ticket = null;
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.getParkSpace() > 0) {
