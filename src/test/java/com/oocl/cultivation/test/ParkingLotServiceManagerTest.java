@@ -1,7 +1,7 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.*;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ParkingLotServiceManagerTest {
         // when
         Boolean result = manager.addParkingBoy(parkingBoy);
         // then
-        Assertions.assertTrue(result);
+        assertTrue(result);
     }
 
     @Test
@@ -36,18 +36,18 @@ public class ParkingLotServiceManagerTest {
         ParkingBoy specifiedParkingBoy = manager.specifyBoy(parkingBoy2);
 
         // then
-        Assertions.assertNotNull(specifiedParkingBoy);
-        Assertions.assertEquals(parkingBoy2, specifiedParkingBoy);
+        assertNotNull(specifiedParkingBoy);
+        assertEquals(parkingBoy2, specifiedParkingBoy);
     }
 
     @Test
     void should_return_true_when_specify_boy_parking_car_given_parking_boy_2() {
         // given
-        ParkingLot parkingLot1 = new ParkingLot("0001");
-        ParkingLot parkingLot2 = new ParkingLot("0002");
-        ParkingBoy parkingBoy1 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 1);
-        ParkingBoy parkingBoy2 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 2);
-        ParkingBoy parkingBoy3 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2), 3);
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        ParkingBoy parkingBoy1 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy2 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        ParkingBoy parkingBoy3 = new ParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         List<ParkingBoy> parkingBoys = new ArrayList<>(Arrays.asList(parkingBoy1, parkingBoy2, parkingBoy3));
         ParkingLotServiceManager manager = new ParkingLotServiceManager(parkingBoys);
 
@@ -56,14 +56,14 @@ public class ParkingLotServiceManagerTest {
         CarTicket ticket = specifiedParkingBoy.parkCar(new Car());
 
         // then
-        Assertions.assertNotNull(ticket);
+        assertNotNull(ticket);
     }
 
     @Test
     void should_return_2_when_specify_parking_lot_given_2_parking_lots() {
         // given
-        ParkingLot parkingLot1 = new ParkingLot("0001");
-        ParkingLot parkingLot2 = new ParkingLot("0002");
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
         ParkingLotServiceManager manager = new ParkingLotServiceManager();
 
         // when
@@ -73,7 +73,7 @@ public class ParkingLotServiceManagerTest {
         int parkingLotCount = manager.getParkingLots().size();
 
         // then
-        Assertions.assertEquals(2, parkingLotCount);
+        assertEquals(2, parkingLotCount);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ParkingLotServiceManagerTest {
         CarTicket ticket = manager.parkCar(new Car());
 
         // then
-        Assertions.assertNotNull(ticket);
+        assertNotNull(ticket);
     }
 
     @Test
@@ -103,14 +103,14 @@ public class ParkingLotServiceManagerTest {
         Car fetchedCar = manager.fetchCar(ticket);
 
         // then
-        Assertions.assertEquals(car, fetchedCar);
+        assertEquals(car, fetchedCar);
     }
 
     @Test
     void should_return_0002_when_parking_1_is_full_given_car() {
         // given
-        ParkingLot parkingLot1 = new ParkingLot("0001");
-        ParkingLot parkingLot2 = new ParkingLot("0002");
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
         ParkingLotServiceManager manager = new ParkingLotServiceManager();
         manager.addParkingLot(parkingLot1);
         manager.addParkingLot(parkingLot2);
@@ -122,14 +122,14 @@ public class ParkingLotServiceManagerTest {
         }
 
         // then
-        Assertions.assertEquals("0002", ticket.getParkingLotId());
+        assertEquals(parkingLot2, ticket.getParkingLot());
     }
 
     @Test
     void should_return_0001_when_parking_1_is_not_full_given_car() {
         // given
-        ParkingLot parkingLot1 = new ParkingLot("0001");
-        ParkingLot parkingLot2 = new ParkingLot("0002");
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
         ParkingLotServiceManager manager = new ParkingLotServiceManager();
         manager.addParkingLot(parkingLot1);
         manager.addParkingLot(parkingLot2);
@@ -141,6 +141,6 @@ public class ParkingLotServiceManagerTest {
         }
 
         // then
-        Assertions.assertEquals("0001", ticket.getParkingLotId());
+        assertEquals(parkingLot1, ticket.getParkingLot());
     }
 }
