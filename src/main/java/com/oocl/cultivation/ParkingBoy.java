@@ -64,16 +64,17 @@ public class ParkingBoy {
     }
 
     public Car fetchCar(CarTicket ticket) {
-        receiveTicketFromCustomer(ticket);
-        Car car = null;
-        if (this.message.equals("")) {
-            for (ParkingLot parkingLot : parkingLots) {
-                if (parkingLot.fetchCar(ticket) != null) {
-                    car = parkingLot.fetchCar(ticket);
-                    break;
+        if(validCarTicket(ticket)) {
+            Car car = null;
+            if (this.message.equals("")) {
+                for (ParkingLot parkingLot : parkingLots) {
+                    if (parkingLot.fetchCar(ticket) != null) {
+                        return parkingLot.fetchCar(ticket);
+                    }
                 }
             }
+            message = "Unrecognized parking ticket.";
         }
-        return car;
+        return null;
     }
 }
