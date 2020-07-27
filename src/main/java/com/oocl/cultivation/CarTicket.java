@@ -1,25 +1,16 @@
 package com.oocl.cultivation;
 
 public class CarTicket {
-    private Boolean effectiveness = true;
-    private String parkingLotId = "";
-
-    public CarTicket(Boolean effectiveness) {
-        this.effectiveness = effectiveness;
-    }
-
-    public CarTicket(String parkingLotId) {
-        this.parkingLotId = parkingLotId;
-    }
+    private ParkingLot parkingLot;
 
     public CarTicket() {
     }
 
-    public Boolean getEffectiveness() {
-        return effectiveness;
+    public CarTicket(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
     }
 
-    public String getParkingLotId() {
-        return this.parkingLotId;
+    public ParkingLot getParkingLot() {
+        return this.parkingLot;
     }
 }

@@ -48,10 +48,6 @@ public class ParkingLot {
         return fetchedCar;
     }
 
-    public Boolean validTicket(CarTicket expiredTicket) {
-        return expiredTicket.getEffectiveness();
-    }
-
     public Boolean addCar() {
         if(parkSpace == 0) {
             return false;
