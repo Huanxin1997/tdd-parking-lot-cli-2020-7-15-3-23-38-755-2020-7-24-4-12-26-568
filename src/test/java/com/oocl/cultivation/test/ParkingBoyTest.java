@@ -10,6 +10,11 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ParkingBoyTest {
+
+    public static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
+    public static final String PLEASE_PROVIDE_YOUR_PARKING_TICKET = "Please provide your parking ticket.";
+    public static final String NOT_ENOUGH_POSITION = "Not enough position.";
+
     @Test
     void should_return_unrecognized_parking_ticket_when_fetch_car_given_wrong_ticket() {
         //given
@@ -21,7 +26,7 @@ public class ParkingBoyTest {
         String result = parkingBoy.responseMessage();
 
         //then
-        assertEquals("Unrecognized parking ticket.", result);
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, result);
     }
 
     @Test
@@ -34,7 +39,7 @@ public class ParkingBoyTest {
         String result = parkingBoy.responseMessage();
 
                 //then
-        assertEquals("Please provide your parking ticket.", result);
+        assertEquals(PLEASE_PROVIDE_YOUR_PARKING_TICKET, result);
     }
 
     @Test
@@ -50,7 +55,7 @@ public class ParkingBoyTest {
         String result = parkingBoy.responseMessage();
 
         // then
-        assertEquals("Not enough position.", result);
+        assertEquals(NOT_ENOUGH_POSITION, result);
     }
 
     @Test
