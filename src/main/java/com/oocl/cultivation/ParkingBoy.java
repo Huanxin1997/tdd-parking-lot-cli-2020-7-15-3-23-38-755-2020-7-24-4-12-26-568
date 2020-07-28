@@ -28,7 +28,7 @@ public class ParkingBoy {
         return true;
     }
 
-    public int checkSpaceCount() {
+    public int getSpaceCount() {
         int remainingParkingSpaces = 0;
         for (ParkingLot parkingLot : this.parkingLots) {
             remainingParkingSpaces += parkingLot.getParkSpace();
