@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
-    private String message;
+    private String message = "";
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy() {
