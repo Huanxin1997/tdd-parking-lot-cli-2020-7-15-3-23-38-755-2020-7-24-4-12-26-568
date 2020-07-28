@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
-    private List<ParkingLot> parkingLots = new ArrayList<>();
+    private List<ParkingLot> parkingLots;
 
     public SmartParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;

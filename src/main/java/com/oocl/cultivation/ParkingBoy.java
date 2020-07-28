@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
+    public static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
+    public static final String NOT_ENOUGH_POSITION = "Not enough position.";
+    public static final String PLEASE_PROVIDE_YOUR_PARKING_TICKET = "Please provide your parking ticket.";
     private String message = "";
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
@@ -22,7 +25,7 @@ public class ParkingBoy {
 
     public Boolean validCarTicket(CarTicket ticket) {
         if (ticket == null) {
-            message = "Please provide your parking ticket.";
+            message = PLEASE_PROVIDE_YOUR_PARKING_TICKET;
             return false;
         }
         return true;
@@ -34,7 +37,7 @@ public class ParkingBoy {
             remainingParkingSpaces += parkingLot.getParkSpace();
         }
         if (remainingParkingSpaces < 1) {
-            message = "Not enough position.";
+            message = NOT_ENOUGH_POSITION;
         }
         return remainingParkingSpaces;
     }
@@ -69,7 +72,7 @@ public class ParkingBoy {
                     }
                 }
             }
-            message = "Unrecognized parking ticket.";
+            message = UNRECOGNIZED_PARKING_TICKET;
         }
         return null;
     }
